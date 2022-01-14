@@ -1,7 +1,7 @@
-import Header from './components/Header';
-import { ThemeStore } from './libs/ThemeContext';
-import Theme from './libs/Theme';
-import GlobalStyles from './libs/globalStyles';
+import Header from '../components/Header';
+import { ThemeStore } from '../libs/ThemeContext';
+import Theme from '../libs/Theme';
+import GlobalStyles from '../libs/globalStyles';
 import styled from 'styled-components';
 
 const StyledAppWrapper = styled.div`

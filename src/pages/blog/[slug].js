@@ -3,7 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import marked from 'marked';
 import styled from 'styled-components';
-import { Content } from '../layouts/Content';
+import Content from '../../layouts/Content';
 
 const StyledArticleTitle = styled.div`
   padding: 1rem 0 2rem 0;
@@ -72,6 +72,7 @@ const StyledMarkdownContent = styled.div`
   ul,
   ol {
     margin-left: 20px;
+    line-height: 24px;
   }
 
   h1 {
@@ -88,6 +89,8 @@ const StyledMarkdownContent = styled.div`
 
   p {
     margin-bottom: 20px;
+    font-size: 18px;
+    line-height: 28px;
   }
 
   pre {
@@ -96,6 +99,7 @@ const StyledMarkdownContent = styled.div`
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 10px;
+    line-height: 24px;
 
     overflow: auto;
   }
@@ -117,7 +121,7 @@ export default function PostPage({ frontmatter: { title, date, cover_image }, sl
 }
 
 export async function getStaticPaths() {
-  const files = fs.readdirSync(path.join('posts'));
+  const files = fs.readdirSync(path.join('src/posts'));
 
   const paths = files.map(filename => ({
     params: {
@@ -132,7 +136,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const markdownWithMeta = fs.readFileSync(path.join('posts', slug + '.md'), 'utf-8');
+  const markdownWithMeta = fs.readFileSync(path.join('src', 'posts/' + slug + '.md'), 'utf-8');
 
   const { data: frontmatter, content } = matter(markdownWithMeta);
 

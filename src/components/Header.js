@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-import CONFIG from '../static/CONFIG.json';
+import CONFIG from '../pages/static/CONFIG.json';
 import { ThemeContext } from '../libs/ThemeContext';
 import Moon from './Icons/Moon';
 import Sun from './Icons/Sun';

@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import marked from 'marked';
-import { Content } from './layouts/Content';
+import Content from '../layouts/Content';
 import styled from 'styled-components';
 
 const StyledAboutHero = styled.div`
@@ -100,7 +100,7 @@ const Home = ({ frontmatter, content }) => {
 export default Home;
 
 export async function getStaticProps() {
-  const markdownWithMeta = fs.readFileSync(path.join('pages', 'static/about.md'), 'utf-8');
+  const markdownWithMeta = fs.readFileSync(path.join('src', 'pages/static/about.md'), 'utf-8');
 
   const { data: frontmatter, content } = matter(markdownWithMeta);
   return {
