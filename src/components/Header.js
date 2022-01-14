@@ -38,7 +38,7 @@ const StyledNavigation = styled.div`
   }
 `;
 
-const StyledLogo = styled(Link)`
+const StyledLogo = styled.a`
   display: block;
   color: ${props => props.theme.color};
   text-decoration: none;
@@ -100,9 +100,9 @@ const Header = () => {
   return (
     <StyledHeader>
       <StyledNavigation>
-        <StyledLogo href="/">
-          <StyledAnchor>{CONFIG.LOGO_TEXT}</StyledAnchor>
-        </StyledLogo>
+        <Link href="/" passHref>
+          <StyledLogo>{CONFIG.LOGO_TEXT}</StyledLogo>
+        </Link>
         <StyledMenu>
           <StyledMenuItem>
             <Link href="/" passHref>

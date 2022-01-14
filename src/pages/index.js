@@ -4,6 +4,8 @@ import matter from 'gray-matter';
 import marked from 'marked';
 import Content from '../layouts/Content';
 import styled from 'styled-components';
+import Head from 'next/head';
+import CONFIG from './static/CONFIG.json';
 
 const StyledAboutHero = styled.div`
   padding: 1rem 0 6rem 0;
@@ -87,6 +89,24 @@ const StyledMarkdownContent = styled.div`
 const Home = ({ frontmatter, content }) => {
   return (
     <Content>
+      <Head>
+        <title>{CONFIG.SITE_TITLE} | About</title>
+        <link rel="icon" href={CONFIG.SITE_IMAGE} type="image/png" />
+        <meta name="title" content={`${CONFIG.SITE_TITLE} | About`} />
+        <meta name="description" content={CONFIG.SITE_DESCRIPTION} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={CONFIG.SITE_URL} />
+        <meta property="og:title" content={`${CONFIG.SITE_TITLE} | About`} />
+        <meta property="og:description" content={CONFIG.SITE_DESCRIPTION} />
+        <meta property="og:image" content={CONFIG.SITE_IMAGE} />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={CONFIG.SITE_URL} />
+        <meta property="twitter:title" content={`${CONFIG.SITE_TITLE} | About`} />
+        <meta property="twitter:description" content={CONFIG.SITE_DESCRIPTION} />
+        <meta property="twitter:image" content={CONFIG.SITE_IMAGE}></meta>
+      </Head>
       <StyledAboutHero>
         <StyledHeroTitle>{frontmatter.title}</StyledHeroTitle>
       </StyledAboutHero>

@@ -4,6 +4,9 @@ import matter from 'gray-matter';
 import marked from 'marked';
 import styled from 'styled-components';
 import Content from '../../layouts/Content';
+import Link from 'next/link';
+import Head from 'next/head';
+import CONFIG from '../static/CONFIG.json';
 
 const StyledArticleTitle = styled.div`
   padding: 1rem 0 2rem 0;
@@ -39,6 +42,21 @@ const StyledImage = styled.img`
   object-fit: cover;
   margin-top: 20px;
   border-radius: 4px;
+`;
+
+const StyledGoBackButton = styled.span`
+  color: ${({ theme }) => theme.color};
+  cursor: pointer;
+  font-size: 24px;
+  margin-top: -10px;
+
+  span {
+    transform: rotate(90deg);
+  }
+`;
+
+const StyledTopOfPage = styled.div`
+  width: 200px;
 `;
 
 const StyledMarkdownContent = styled.div`
@@ -105,9 +123,36 @@ const StyledMarkdownContent = styled.div`
   }
 `;
 
-export default function PostPage({ frontmatter: { title, date, cover_image }, slug, content }) {
+export default function PostPage({ frontmatter: { title, date, excerpt, cover_image }, slug, content }) {
   return (
     <Content>
+      <Head>
+        <title>
+          {title} | {CONFIG.SITE_TITLE}
+        </title>
+        <meta name="title" content={title} />
+        <link rel="icon" href={CONFIG.SITE_IMAGE} type="image/png" />
+        <meta name="description" content={excerpt} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${CONFIG.SITE_URL}/blog/${slug}`} />
+        <meta property="og:title" content={`${title} | ${CONFIG.SITE_TITLE}`} />
+        <meta property="og:description" content={excerpt} />
+        <meta property="og:image" content={cover_image} />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={`${CONFIG.SITE_URL}/blog/${slug}`} />
+        <meta property="twitter:title" content={`${title} | ${CONFIG.SITE_TITLE}`} />
+        <meta property="twitter:description" content={excerpt} />
+        <meta property="twitter:image" content={cover_image}></meta>
+      </Head>
+      <StyledTopOfPage>
+        <Link href="/blog" passHref>
+          <StyledGoBackButton>
+            <span>⟵ Go Back</span>
+          </StyledGoBackButton>
+        </Link>
+      </StyledTopOfPage>
       <StyledArticleTitle>
         <StyledTitle>{title}</StyledTitle>
         <StyledDate>{date}</StyledDate>
