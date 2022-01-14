@@ -1,5 +1,8 @@
 import styled from 'styled-components';
+import dynamic from 'next/dynamic';
+
 const Header = dynamic(() => import('../components/Header'), { ssr: false });
+
 const StyledContainer = styled.div`
   width: 900px;
   display: flex;
