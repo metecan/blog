@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import Header from '../components/Header';
-
+const Header = dynamic(() => import('../components/Header'), { ssr: false });
 const StyledContainer = styled.div`
   width: 900px;
   display: flex;
